@@ -28,6 +28,10 @@ for p in tree.iterfind('project') :
    remote   = p.attrib['remote']
    path     = p.attrib['path']
    revision = p.attrib['revision']
+   for c in p.iterfind('copyfile') :
+      src  = c.attrib['src']
+      dest = c.attrib['dest']
+      print 'cp {}/{} {}'.format(path,src,dest)
    url = remotes[remote]
    print 'git submodule add {}/{} {}'.format(url,name,path) 
    print 'cd {} && git checkout {}; cd "$MYPWD"'.format(path,revision)
